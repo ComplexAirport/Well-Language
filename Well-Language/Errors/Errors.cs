@@ -117,5 +117,8 @@ namespace WellLang
     class ErrorNames
     {
         public static string syntax_error = "Syntax-Error";
+        public static string core_error = "Core-Error";
+        public static string value_error = "Value-Error";
+        public static string math_error = "Math-Error";
     }
 }
