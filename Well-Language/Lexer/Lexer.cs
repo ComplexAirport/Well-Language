@@ -42,6 +42,10 @@ namespace WellLang
         {
             while (this.currentPos.c_char != '\0')
             {
+                // Check for errors
+                if (this.errorStream.errors.Count > 0)
+                    break;
+
                 this.token += this.currentPos.c_char;
 
                 // Check to be ignored
@@ -103,9 +107,7 @@ namespace WellLang
                     this.SetNewStartPos();
                 }
 
-                // Check for errors
-                if (this.errorStream.errors.Count != 0)
-                    break;
+                
 
                 this.currentPos.Advance();
             }
