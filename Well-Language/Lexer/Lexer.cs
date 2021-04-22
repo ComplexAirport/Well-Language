@@ -150,11 +150,8 @@ namespace WellLang
                     context: "while parsing floating number"));
             }
 
-            double parsed;
-            double.TryParse(resultNumber, out parsed);
-
             this.tokens.Add(new NumberToken(
-                parsed, this.startPos, this.currentPos));
+                resultNumber, this.startPos, this.currentPos));
         }
 
         private void AddStringToken()

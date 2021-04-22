@@ -23,11 +23,11 @@ namespace WellLang
     class Token
     {
         public string type;
-        public object value;
+        public string value;
         public Position startPos;
         public Position endPos;
 
-        public Token(string type, object value, Position start_pos, Position end_pos)
+        public Token(string type, string value, Position start_pos, Position end_pos)
         {
             this.type = type;
             this.value = value;
@@ -37,7 +37,7 @@ namespace WellLang
 
         public override string ToString()
         {
-            return $"{this.value.ToString()}: {this.type.ToString()}";
+            return $"{this.value}: {this.type}";
         }
 
         public Token Copy()
@@ -55,7 +55,7 @@ namespace WellLang
 
     class NumberToken : Token
     {
-        public NumberToken(double value, Position startPos, Position endPos)
+        public NumberToken(string value, Position startPos, Position endPos)
             : base(TokenNames.NumberToken, value, startPos, endPos)
         { }
     }
