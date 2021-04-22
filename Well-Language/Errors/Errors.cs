@@ -37,6 +37,11 @@ namespace WellLang
             this.errors.Add(e);
         }
 
+        public void Clear()
+        {
+            this.errors = new ErrorList();
+        }
+
         public override string ToString()
         {
             string result = "";
