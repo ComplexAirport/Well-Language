@@ -6,12 +6,13 @@ namespace WellLang
     {
         static void Main(string[] args)
         {
-            ErrorStream globalErrorStream = new ErrorStream();
-
-            string code = @"10";
-            Utils.Execute("a.txt", code, globalErrorStream);
+            while (true)
+            {
+                ErrorStream tempErrorStream = new ErrorStream();
+                Console.Write("Well> ");
+                string code = Console.ReadLine();
+                Utils.Execute("<stdin>", code, tempErrorStream);
+            }
         }
     }
-
-
 }
