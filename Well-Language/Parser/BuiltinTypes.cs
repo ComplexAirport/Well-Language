@@ -14,7 +14,6 @@ namespace WellLang
         public static string str = "string";
     }
 
-    // Language built-in types
     class AnyType
     {
         public string type;
@@ -30,43 +29,39 @@ namespace WellLang
             this.endPos = endPos;
         }
 
-        // Basic operations like +, -, *, /, ^ etc.
-        public AnyType OperatorAdd(AnyType other) => new AnyType(this.type, this.value + other.value, this.startPos, other.endPos);
+        public virtual AnyType OperatorAdd(AnyType other)
+        {
+            return new AnyType(this.type, this.value + other.value, this.startPos, other.endPos);
+        }
 
-        public AnyType OperatorSub(AnyType other) => null;
+        public virtual AnyType OperatorSub(AnyType other)
+        {
+            return new AnyType(this.type, this.value - other.value, this.startPos, other.endPos);
+        }
 
-        public AnyType OperatorMul(AnyType other) => null;
+        public virtual AnyType OperatorMul(AnyType other)
+        {
+            return new AnyType(this.type, this.value * other.value, this.startPos, other.endPos);
+        }
 
-        public AnyType OperatorDiv(AnyType other) => null;
+        public virtual AnyType OperatorDiv(AnyType other)
+        {
+            return new AnyType(this.type, this.value / other.value, this.startPos, other.endPos);
+        }
 
-        // Some methods for language
-        public override string ToString() => this.value.ToString();
-
-        public StringType AsString() => new StringType(this.ToString(), this.startPos, this.endPos);
+        public override string ToString()
+        {
+            return $"{this.value.ToString()}: {this.type}";
+        }
     }
 
     class NumberType : AnyType
     {
-        public double mainValue;
         public NumberType(double value, Position startPos, Position endPos)
-            : base(TypeNames.number, new double(), startPos, endPos)
+            : base(TypeNames.number, value, startPos, endPos)
         {
-            this.mainValue = value;
+
         }
-
-        public NumberType OperatorAdd(NumberType other)
-            => new NumberType(this.mainValue + other.mainValue, this.startPos, other.endPos);
-
-        public NumberType OperatorSub(NumberType other)
-            => new NumberType(this.mainValue - other.mainValue, this.startPos, other.endPos);
-
-        public NumberType OperatorMul(NumberType other)
-            => new NumberType(this.mainValue * other.mainValue, this.startPos, other.endPos);
-
-        public NumberType OperatorDiv(NumberType other)
-            => new NumberType(this.mainValue / other.mainValue, this.startPos, other.endPos);
-
-        public override string ToString() => this.mainValue.ToString();
     }
 
     class StringType : AnyType
